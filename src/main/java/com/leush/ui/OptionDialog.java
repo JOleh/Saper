@@ -13,7 +13,248 @@ class OptionDialog extends JDialog {
     private JComboBox<String> levelComboBox;
     private JFormattedTextField width;
     private JFormattedTextField height;
-    private JRadioButton sizePattern;
+    private JRadioButton predefinedSizesButton;
+
+    private final int DIALOG_WIDTH = 300;
+    private final int DIALOG_HEIGHT = 200;
+    private final int RIGHT_ALIGN = 20;
+    private final int BUTTON_WIDTH = 80;
+    private final int BUTTON_HEIGHT = 25;
+    private final int TOP = 39;
+    private final int ALIGN = 10;
+    private final int JRADIO_BUTTON_SIMPLE_SIDE = 25;
+    private final int LEFT_ALIGN = 20;
+
+    private final MainFrame owner;
+
+    OptionDialog(MainFrame owner) {
+        super(owner);
+        this.owner = owner;
+
+        setTitle("Options...");
+        setSize(new Dimension(DIALOG_WIDTH, DIALOG_HEIGHT));
+        setLayout(null);
+        setResizable(false);
+
+        createOkButton();
+        createCancelButton();
+
+        predefinedSizesButton = createRadioButtonForPredefinedSizes();
+        JRadioButton customSizeButton = createRadioButtonForCustomSize();
+
+        createGroupOfSizeButtons(predefinedSizesButton, customSizeButton);
+
+        createLabelForSizeBlock();
+
+        createComboBoxOfPredefinedSizes();
+
+        createWidthAndHeightLabelsFroCustomSize();
+
+        createWidthFieldForCustomSize();
+        createHeightFieldForCustomSize();
+
+        createWidthLimitLabelForCustomSize();
+        createHeightLimitLabelForCustomSize();
+
+        createLevelLabel();
+        createComboBoxForLevels();
+    }
+
+    private void createOkButton() {
+        JButton jButtonOK = new JButton("OK");
+        jButtonOK.setBounds(DIALOG_WIDTH - (BUTTON_WIDTH + RIGHT_ALIGN) * 2,
+                DIALOG_HEIGHT - BUTTON_HEIGHT - TOP, BUTTON_WIDTH, BUTTON_HEIGHT);
+        jButtonOK.addActionListener(owner);
+        add(jButtonOK);
+    }
+
+    private void createCancelButton() {
+        JButton jButtonCancel = new JButton("Cancel");
+        jButtonCancel.setBounds(DIALOG_WIDTH - (BUTTON_WIDTH + RIGHT_ALIGN),
+                DIALOG_HEIGHT - BUTTON_HEIGHT - TOP, BUTTON_WIDTH, BUTTON_HEIGHT);
+        jButtonCancel.addActionListener(owner);
+        add(jButtonCancel);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                jButtonCancel.doClick();
+            }
+        });
+    }
+
+    private JRadioButton createRadioButtonForPredefinedSizes() {
+        predefinedSizesButton = new JRadioButton();
+        predefinedSizesButton.setSelected(true);
+        add(predefinedSizesButton);
+        predefinedSizesButton.setBounds(ALIGN, BUTTON_HEIGHT + ALIGN, JRADIO_BUTTON_SIMPLE_SIDE, JRADIO_BUTTON_SIMPLE_SIDE);
+
+        predefinedSizesButton.addActionListener(e -> {
+            sizeComboBox.setEnabled(true);
+            width.setEnabled(false);
+            height.setEnabled(false);
+        });
+
+        return predefinedSizesButton;
+    }
+
+    private JRadioButton createRadioButtonForCustomSize() {
+        JRadioButton customSizeButton = new JRadioButton();
+        add(customSizeButton);
+        customSizeButton.setBounds(ALIGN, BUTTON_HEIGHT + ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + ALIGN, JRADIO_BUTTON_SIMPLE_SIDE, JRADIO_BUTTON_SIMPLE_SIDE);
+
+        customSizeButton.addActionListener(e -> {
+            width.setEnabled(true);
+            height.setEnabled(true);
+            sizeComboBox.setEnabled(false);
+        });
+
+        return customSizeButton;
+    }
+
+    private void createGroupOfSizeButtons(JRadioButton... buttons) {
+        ButtonGroup sizeGroup = new ButtonGroup();
+        for (JRadioButton jButton : buttons) {
+            sizeGroup.add(jButton);
+        }
+    }
+
+    private void createComboBoxOfPredefinedSizes() {
+        sizeComboBox = new JComboBox<>();
+        sizeComboBox.addItem("large  (24*32)");
+        sizeComboBox.addItem("middle (16*18)");
+        sizeComboBox.addItem("small  (8*10)");
+        sizeComboBox.setBounds(ALIGN + JRADIO_BUTTON_SIMPLE_SIDE, BUTTON_HEIGHT + ALIGN, 120, JRADIO_BUTTON_SIMPLE_SIDE);
+        sizeComboBox.setSelectedIndex(1);
+        add(sizeComboBox);
+    }
+
+    private void createLabelForSizeBlock() {
+        JLabel sizeLabel = new JLabel("<html><h2>Size : <h2></html>");
+        sizeLabel.setBounds(LEFT_ALIGN, 0, BUTTON_WIDTH, BUTTON_HEIGHT);
+        add(sizeLabel);
+    }
+
+    private void createWidthLabelForCustomSize() {
+        JLabel w = new JLabel("w:");
+        w.setBounds(ALIGN + JRADIO_BUTTON_SIMPLE_SIDE, BUTTON_HEIGHT + ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + ALIGN, 15, JRADIO_BUTTON_SIMPLE_SIDE);
+        add(w);
+    }
+
+    private void createHeightLabelForCustomSize() {
+        JLabel h = new JLabel("h:");
+        h.setBounds(ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + 60, BUTTON_HEIGHT + ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + ALIGN, 15, JRADIO_BUTTON_SIMPLE_SIDE);
+        add(h);
+    }
+
+    private void createWidthAndHeightLabelsFroCustomSize() {
+        createWidthLabelForCustomSize();
+        createHeightLabelForCustomSize();
+    }
+
+    private NumberFormatter createFormatterForNumberTextField() {
+        NumberFormat format = NumberFormat.getInstance();
+        NumberFormatter formatter = new NumberFormatter(format);
+        formatter.setValueClass(Integer.class);
+        formatter.setMinimum(1);
+        formatter.setMaximum(24);
+        formatter.setAllowsInvalid(false);
+        formatter.setCommitsOnValidEdit(true);
+
+        //todo setMaximum for heigh
+        formatter.setMaximum(32);
+
+        return formatter;
+    }
+
+    private void createWidthFieldForCustomSize() {
+        NumberFormatter formatter = createFormatterForNumberTextField();
+        width = new JFormattedTextField(formatter);
+        width.setBounds(ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + 15, BUTTON_HEIGHT + ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + ALIGN, 35, JRADIO_BUTTON_SIMPLE_SIDE);
+        width.setEnabled(false);
+        add(width);
+    }
+
+    private void createHeightFieldForCustomSize() {
+        NumberFormatter formatter = createFormatterForNumberTextField();
+        height = new JFormattedTextField(formatter);
+        height.setBounds(ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + 60 + 15, BUTTON_HEIGHT + ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + ALIGN, 35, JRADIO_BUTTON_SIMPLE_SIDE);
+        height.setEnabled(false);
+        add(height);
+    }
+
+    private void createWidthLimitLabelForCustomSize() {
+        JLabel faqW = new JLabel("<= 24");
+        faqW.setBounds(ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + 15, BUTTON_HEIGHT + ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + ALIGN + 20, 35, JRADIO_BUTTON_SIMPLE_SIDE);
+        add(faqW);
+    }
+
+    private void createHeightLimitLabelForCustomSize() {
+        JLabel faqH = new JLabel("<= 32");
+        faqH.setBounds(ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + 60 + 15, BUTTON_HEIGHT + ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + ALIGN + 20, 35, JRADIO_BUTTON_SIMPLE_SIDE);
+        add(faqH);
+    }
+
+    private void createLevelLabel() {
+        JLabel levelLabel = new JLabel("<html><h2>Level : <h2></html>");
+        levelLabel.setBounds(DIALOG_WIDTH / 2 + RIGHT_ALIGN, 0, BUTTON_WIDTH, BUTTON_HEIGHT);
+        add(levelLabel);
+    }
+
+    private void createComboBoxForLevels() {
+        levelComboBox = new JComboBox<>();
+        levelComboBox.addItem("1 - Junior");
+        levelComboBox.addItem("2");
+        levelComboBox.addItem("3 - Middle");
+        levelComboBox.addItem("4");
+        levelComboBox.addItem("5 - Senior");
+        levelComboBox.addItem("6");
+        levelComboBox.addItem("7 - To Hard");
+        levelComboBox.addItem("8");
+        levelComboBox.addItem("9 - Unreal");
+        levelComboBox.setSelectedIndex(2);//todo magic number
+        levelComboBox.setBounds(DIALOG_WIDTH / 2 + ALIGN, BUTTON_HEIGHT + ALIGN, 120, JRADIO_BUTTON_SIMPLE_SIDE);
+        add(levelComboBox);
+    }
+
+
+    /**
+     * Викликається при натисканні ОК і надає головному вікну встановлений користувачем розмір
+     *
+     * @return повертає вибраний розмір таблиці
+     */
+    Dimension getSizeInfo() {
+        /*тимчасовий обєкт класу Dimension*/
+        Dimension temporary = new Dimension();
+        /*якщо комбобокс є доступним для вибору , то беремо з нього дані*/
+        if (sizeComboBox.isEnabled()) {
+            /*Перевіряємо який елемн вибраний*/
+            switch (sizeComboBox.getSelectedIndex()) {
+                case 0 -> temporary = new Dimension(24, 32);
+                case 1 -> temporary = new Dimension(16, 18);
+                case 2 -> temporary = new Dimension(8, 10);
+            }
+        }
+        /*беремо дані з форматованих полів , якщо комбобокс недоступний*/
+        else {
+            String w = width.getText();
+            String h = height.getText();
+            temporary = new Dimension(Integer.parseInt(w), Integer.parseInt(h));
+        }
+        /*повертаємо розмір*/
+        return temporary;
+    }
+
+    /**
+     * Викликається при натисканні ОК і надає головному вікну встановлений користувачем рівень гри
+     *
+     * @return повертає рівень гри
+     */
+    int getLevelInfo() {
+        /*повертаєм індекс вибраного елемент і додаємо 1 для коригування рівня*/
+        return levelComboBox.getSelectedIndex() + 1;
+    }
 
     JComboBox<String> getSizeComboBox() {
         return sizeComboBox;
@@ -32,246 +273,7 @@ class OptionDialog extends JDialog {
     }
 
     JRadioButton getSizePatternRadioButton() {
-        return sizePattern;
-    }
-
-    /**
-     * Конструктор клас
-     *
-     * @param owner - власник діалогово вікна
-     */
-    OptionDialog(MainFrame owner) {
-        super(owner);
-        int DIALOG_WIDTH = 300;
-        int DIALOG_HEIGHT = 200;
-        int RIGHT_ALIGN = 20;
-        int BUTTON_WIDTH = 80;
-        int BUTTON_HEIGHT = 25;
-        int TOP = 39;
-        int ALIGN = 10;
-        int JRADIO_BUTTON_SIMPLE_SIDE = 25;
-        int LEFT_ALIGN = 20;
-
-        setTitle("Options...");
-        setSize(new Dimension(DIALOG_WIDTH, DIALOG_HEIGHT));
-        setLayout(null);
-        setResizable(false);
-
-        JButton jButtonOK = new JButton("OK");
-        JButton jButtonCancel = new JButton("Cancel");
-
-        /*Надання кнопкам розміщення в вікні*/
-        jButtonOK.setBounds(DIALOG_WIDTH - (BUTTON_WIDTH + RIGHT_ALIGN) * 2,
-                DIALOG_HEIGHT - BUTTON_HEIGHT - TOP, BUTTON_WIDTH, BUTTON_HEIGHT);
-        jButtonCancel.setBounds(DIALOG_WIDTH - (BUTTON_WIDTH + RIGHT_ALIGN),
-                DIALOG_HEIGHT - BUTTON_HEIGHT - TOP, BUTTON_WIDTH, BUTTON_HEIGHT);
-        /*Надання кнопкам слухавок. Події будуть оброблятись в батьківсьокому класі вікна*/
-        jButtonOK.addActionListener(owner);
-        jButtonCancel.addActionListener(owner);
-        /*Додавання кнопок в вікно*/
-        add(jButtonOK);
-        add(jButtonCancel);
-
-        /*Створення групи кнопок*/
-        ButtonGroup sizeGroup = new ButtonGroup();
-        /*Створення радіокнопки для шаблонного введення розміру*/
-        sizePattern = new JRadioButton();
-        /*Створення падіокнопки для самостійного введення*/
-        JRadioButton sizeByYourself = new JRadioButton();
-
-        /*Надання властивості радіокнопці шаблоного введення за замовчуванням вибраної*/
-        sizePattern.setSelected(true);
-
-        /*Додавання радіокнопок в групу кнопок*/
-        sizeGroup.add(sizePattern);
-        sizeGroup.add(sizeByYourself);
-
-        /*Додавання кнопок на вікно*/
-        add(sizePattern);
-        add(sizeByYourself);
-
-        /*Встановлення радіокнопкам розміщення на вікні*/
-        sizePattern.setBounds(ALIGN, BUTTON_HEIGHT + ALIGN, JRADIO_BUTTON_SIMPLE_SIDE, JRADIO_BUTTON_SIMPLE_SIDE);
-        sizeByYourself.setBounds(ALIGN, BUTTON_HEIGHT + ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + ALIGN, JRADIO_BUTTON_SIMPLE_SIDE, JRADIO_BUTTON_SIMPLE_SIDE);
-
-        /*Створення мітки для відображення групи вибору розміру таблиці*/
-        JLabel sizeLabel = new JLabel("<html><h2>Size : <h2></html>");
-        /*Встановлення розміщення мітки на вікні*/
-        sizeLabel.setBounds(LEFT_ALIGN, 0, BUTTON_WIDTH, BUTTON_HEIGHT);
-        /*Додавання мітки в вікно*/
-        add(sizeLabel);
-
-        /*Створення комбобоксу для вибору шаблонного розміру*/
-        sizeComboBox = new JComboBox<>();
-        /*Створення елементів комбобоксу з шаблонними розмірами*/
-        sizeComboBox.addItem("large  (24*32)");
-        sizeComboBox.addItem("middle (16*18)");
-        sizeComboBox.addItem("small  (8*10)");
-        /*Встановлення розміщення комбобоксу в вікні*/
-        sizeComboBox.setBounds(ALIGN + JRADIO_BUTTON_SIMPLE_SIDE, BUTTON_HEIGHT + ALIGN, 120, JRADIO_BUTTON_SIMPLE_SIDE);
-        /*Встановлення в комбобоксі 2 елемента як зазамовчуванням*/
-        sizeComboBox.setSelectedIndex(1);
-        /*Додавання комбобоксу в вікно*/
-        add(sizeComboBox);
-
-        /*Створення мітки для умовного позначення введення ширини таблиці якщо користувач вибрав ручне введення*/
-        JLabel w = new JLabel("w:");
-        /*Встановлення розміщення мітки на вікні*/
-        w.setBounds(ALIGN + JRADIO_BUTTON_SIMPLE_SIDE, BUTTON_HEIGHT + ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + ALIGN, 15, JRADIO_BUTTON_SIMPLE_SIDE);
-        /*Додавання мітки в вікно*/
-        add(w);
-        /*Створення мітки для умовного позначення введення висоти таблиці ,якщо користувач вибрав ручне введення*/
-        JLabel h = new JLabel("h:");
-        /*Встановлення розміщення мітки на вікні*/
-        h.setBounds(ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + 60, BUTTON_HEIGHT + ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + ALIGN, 15, JRADIO_BUTTON_SIMPLE_SIDE);
-        /*Додавання мітки в вікно*/
-        add(h);
-
-        /*Створення формату введення даних в текстове поле*/
-        NumberFormat format = NumberFormat.getInstance();
-        NumberFormatter formatter = new NumberFormatter(format);
-        /*Надання форматеру властивості для цілих чисел*/
-        formatter.setValueClass(Integer.class);
-        /*Встановлення мініму для введення*/
-        formatter.setMinimum(1);
-        /*Встановлення максимуму для введення у поле ширини*/
-        formatter.setMaximum(24);
-        /*Встановлення властивості введення лише цілих чисел в заданому діапазоні*/
-        formatter.setAllowsInvalid(false);
-        /*сам не вшарив за що відповідає дана властивість*/
-        formatter.setCommitsOnValidEdit(true);
-
-        /*Створення обєкту форматованого текстового поля для введення ширини*/
-        width = new JFormattedTextField(formatter);
-        /*Встановлення розміщення поля в вікні*/
-        width.setBounds(ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + 15, BUTTON_HEIGHT + ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + ALIGN, 35, JRADIO_BUTTON_SIMPLE_SIDE);
-        /*Встановлення неможливості використання (за замовчуванням)*/
-        width.setEnabled(false);
-        /*Додавання поля в вікно*/
-        add(width);
-        /*Встановлення максимуму для введення у поли висоти*/
-        formatter.setMaximum(32);
-        /*Створення обєкту форматованого текстового поля для введення висоти*/
-        height = new JFormattedTextField(formatter);
-        /*Встановлення розміщення поля в вікні*/
-        height.setBounds(ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + 60 + 15, BUTTON_HEIGHT + ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + ALIGN, 35, JRADIO_BUTTON_SIMPLE_SIDE);
-        /*Встановлення неможливості використання (за замовчуванням)*/
-        height.setEnabled(false);
-        /*Додавання поля в вікно*/
-        add(height);
-        /*Створення мітки для того щоб вказати користувачу ліміт введенння ширини*/
-        JLabel faqW = new JLabel("<= 24");
-        /*Встановлення розміщення мітки в вікні*/
-        faqW.setBounds(ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + 15, BUTTON_HEIGHT + ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + ALIGN + 20, 35, JRADIO_BUTTON_SIMPLE_SIDE);
-        /*Додавання мітки в вікно*/
-        add(faqW);
-        /*Створення мітки для того щоб вказати користувачу ліміт введенння висоти*/
-        JLabel faqH = new JLabel("<= 32");
-        /*Встановлення розміщення мітки в вікні*/
-        faqH.setBounds(ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + 60 + 15, BUTTON_HEIGHT + ALIGN + JRADIO_BUTTON_SIMPLE_SIDE + ALIGN + 20, 35, JRADIO_BUTTON_SIMPLE_SIDE);
-        /*Додавання мітки в вікно*/
-        add(faqH);
-
-        /*Створення мітки для відображення групи вибору рівня гри*/
-        JLabel levelLabel = new JLabel("<html><h2>Level : <h2></html>");
-        /*Встановлення розміщення в вікні*/
-        levelLabel.setBounds(DIALOG_WIDTH / 2 + RIGHT_ALIGN, 0, BUTTON_WIDTH, BUTTON_HEIGHT);
-        /*Додавання мітки в вікно*/
-        add(levelLabel);
-
-        /*Створення комбобоксу для шаблонного вибору рівня гри*/
-        levelComboBox = new JComboBox<>();
-        /*Створення елементів комбобоксу*/
-        levelComboBox.addItem("1 - Junior");
-        levelComboBox.addItem("2");
-        levelComboBox.addItem("3 - Middle");
-        levelComboBox.addItem("4");
-        levelComboBox.addItem("5 - Senior");
-        levelComboBox.addItem("6");
-        levelComboBox.addItem("7 - To Hard");
-        levelComboBox.addItem("8");
-        levelComboBox.addItem("9 - Unreal");
-        /*Надання 3 елементу властивості бути вибраним за замовчуванням*/
-        levelComboBox.setSelectedIndex(2);
-        /*Встановлення розміщення комбобоксу в вікні*/
-        levelComboBox.setBounds(DIALOG_WIDTH / 2 + ALIGN, BUTTON_HEIGHT + ALIGN, 120, JRADIO_BUTTON_SIMPLE_SIDE);
-        /*Додавання комбобоксу в вікно*/
-        add(levelComboBox);
-
-        /*Надання властивсі приховувати діалогове вікно при натисканні на Exit*/
-        //setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-        /*Додавання слухавки діалоговому вікну для слухання подій вікна*/
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                super.windowClosing(e);
-                /*Емулювання нажаття кнопки Cancel при виході з вікна*/
-                jButtonCancel.doClick();
-            }
-        });
-
-        /*Надання радіокнопкам слухавок, які обробляються локально*/
-        sizePattern.addActionListener(e -> {
-            /*При встановленні радіокнопки вибору шаблонно розміру :
-                встановити доступним комбобокс розміру
-                встановити недопустимим використання форматованих полів введення висоти і ширини
-             */
-            sizeComboBox.setEnabled(true);
-            width.setEnabled(false);
-            height.setEnabled(false);
-        });
-        sizeByYourself.addActionListener(e -> {
-            /*При встановленні радіокнопки самостійного вибору розміру :
-                встановити недоступним для вибору комбобокс розміру
-                встановити допустимим для введення форматованих полів введення висоти і ширини
-             */
-            width.setEnabled(true);
-            height.setEnabled(true);
-            sizeComboBox.setEnabled(false);
-        });
-    }
-
-    /**
-     * Викликається при натисканні ОК і надає головному вікну встановлений користувачем розмір
-     *
-     * @return повертає вибраний розмір таблиці
-     */
-    Dimension getSizeInfo() {
-        /*тимчасовий обєкт класу Dimension*/
-        Dimension temporary = new Dimension();
-        /*якщо комбобокс є доступним для вибору , то беремо з нього дані*/
-        if (sizeComboBox.isEnabled()) {
-            /*Перевіряємо який елемн вибраний*/
-            switch (sizeComboBox.getSelectedIndex()) {
-                case 0:
-                    temporary = new Dimension(24, 32);
-                    break;
-                case 1:
-                    temporary = new Dimension(16, 18);
-                    break;
-                case 2:
-                    temporary = new Dimension(8, 10);
-                    break;
-            }
-        }
-        /*беремо дані з форматованих полів , якщо комбобокс недоступний*/
-        else {
-            String w = width.getText();
-            String h = height.getText();
-            temporary = new Dimension(Integer.valueOf(w), Integer.valueOf(h));
-        }
-        /*повертаємо розмір*/
-        return temporary;
-    }
-
-    /**
-     * Викликається при натисканні ОК і надає головному вікну встановлений користувачем рівень гри
-     *
-     * @return повертає рівень гри
-     */
-    int getLevelInfo() {
-        /*повертаєм індекс вибраного елемент і додаємо 1 для коригування рівня*/
-        return levelComboBox.getSelectedIndex() + 1;
+        return predefinedSizesButton;
     }
 }
 
