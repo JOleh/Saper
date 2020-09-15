@@ -1,0 +1,17 @@
+<html>
+<h2>Miner<h2>
+<p align = &quot;justify&quot;>
+You should find all bombs in field. How?<br>
+Left mouse button helps you to detect<br>
+cells where you think are not bombs.<br>
+If you think that in some cells are bombs - <br>
+press right mouse button. In moments<br>
+when you think that you chose wrong cell<br>
+to detect bomb - press right mouse button<br>
+one more time to clear you choice.<br>
+Numbers int green cells show you<br>
+how many cells with bombs a near current cell.<br>
+If you check all non bomb cells - you win,<br>
+else if you find red cell - you lose.
+</p>
+</html>
