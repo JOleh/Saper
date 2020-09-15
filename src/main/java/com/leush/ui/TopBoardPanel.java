@@ -10,12 +10,12 @@ import java.awt.*;
  * Кдас додаткової панелі з кнопкою рестарту гри
  * Наслідує JPanel.
  */
-class OptionsPanel extends JPanel {
+class TopBoardPanel extends JPanel {
     private JLabel imageLabel;
     static int OPTIONAL_PANEL_HEIGHT = 35;
 
 
-    OptionsPanel(MainFrame parent) {
+    TopBoardPanel(MainFrame parent) {
         init(parent);
     }
 

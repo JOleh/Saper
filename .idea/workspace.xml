@@ -6,9 +6,21 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81d7bfed-1056-4715-a19d-548fe2bd2e59" name="Default" comment="works with maven and Spring Boot">
+    <list default="true" id="81d7bfed-1056-4715-a19d-548fe2bd2e59" name="Default" comment="refactored a bit OptionDialog">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/leush/BeanProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/leush/Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/leush/ResourceFetcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/text/author.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/text/rules.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/leush/ui/OptionDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leush/ui/OptionDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/leush/ImageFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leush/ImageFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/leush/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leush/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/leush/ui/BoardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leush/ui/BoardPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/leush/ui/CongratulationsDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leush/ui/CongratulationsDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/leush/ui/InfoDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leush/ui/InfoDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/leush/ui/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leush/ui/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/leush/ui/OptionsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/leush/ui/TopBoardPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,9 +30,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -59,7 +71,7 @@
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -67,6 +79,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Oleh Leush\Desktop\PROJECTS\saper\Saper\src\main\resources" />
       <recent name="C:\Users\Oleh Leush\Desktop\PROJECTS\saper\Saper" />
       <recent name="C:\Users\admin\IdeaProjects\hello-world\Saper\src\resources" />
       <recent name="C:\Users\admin\IdeaProjects\hello-world\Saper\src\Logic" />
@@ -176,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600117420540</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="refactored a bit OptionDialog">
+      <created>1600120147449</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1600120147449</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -187,37 +207,42 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="works with maven and Spring Boot" />
-    <option name="LAST_COMMIT_MESSAGE" value="works with maven and Spring Boot" />
+    <MESSAGE value="refactored a bit OptionDialog" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored a bit OptionDialog" />
   </component>
   <component name="WindowStateProjectService">
     <state x="492" y="101" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1600111546282">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="492" y="101" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1536.824@0.0.1536.824" timestamp="1600111546282" />
-    <state x="186" y="0" key="CommitChangelistDialog2" timestamp="1600117419419">
+    <state x="254" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1600173373296">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="186" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1600117419419" />
+    <state x="254" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1600173373296" />
+    <state x="186" y="0" key="CommitChangelistDialog2" timestamp="1600120146675">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="186" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1600120146675" />
     <state x="445" y="122" key="FileChooserDialogImpl" timestamp="1600111506196">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="445" y="122" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1600111506196" />
-    <state width="1493" height="109" key="GridCell.Tab.0.bottom" timestamp="1600120010547">
+    <state width="1493" height="34" key="GridCell.Tab.0.bottom" timestamp="1600176540594">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="109" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600120010547" />
-    <state width="1493" height="109" key="GridCell.Tab.0.center" timestamp="1600120010547">
+    <state width="1493" height="34" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600176540594" />
+    <state width="1493" height="34" key="GridCell.Tab.0.center" timestamp="1600176540593">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="109" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600120010547" />
-    <state width="1493" height="109" key="GridCell.Tab.0.left" timestamp="1600120010546">
+    <state width="1493" height="34" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600176540593" />
+    <state width="1493" height="34" key="GridCell.Tab.0.left" timestamp="1600176540593">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="109" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600120010546" />
-    <state width="1493" height="109" key="GridCell.Tab.0.right" timestamp="1600120010547">
+    <state width="1493" height="34" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600176540593" />
+    <state width="1493" height="34" key="GridCell.Tab.0.right" timestamp="1600176540593">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="109" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600120010547" />
+    <state width="1493" height="34" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600176540593" />
     <state x="249" y="0" key="SettingsEditor" timestamp="1600111535702">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -226,10 +251,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="490" y="154" width="540" height="524" key="StructurePopup/0.0.1536.824@0.0.1536.824" timestamp="1600114817419" />
-    <state x="361" y="132" key="Vcs.Push.Dialog.v2" timestamp="1600117424211">
+    <state x="361" y="132" key="Vcs.Push.Dialog.v2" timestamp="1600120149794">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="132" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1600117424211" />
+    <state x="361" y="132" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1600120149794" />
     <state x="498" y="304" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1600110585564">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -14,7 +14,6 @@ import java.util.Objects;
 
 @Slf4j
 @Service
-@NoArgsConstructor
 public class ImageFactory {
 
     private static final Map<String, ImageIcon> imageType = new HashMap<>();
