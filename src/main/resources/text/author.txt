@@ -1,0 +1,7 @@
+<html>
+<h3>Author : Oleh Leush<h3><br>
+Current institution : Lviv National<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Polytechnic University<br>
+Date &nbsp;: 2017 October<br>
+e-mail : mrnovember@ukr.net
+</html>
