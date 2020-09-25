@@ -12,14 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-@Slf4j
 @Service
 public class ImageFactory {
 
     private static final Map<String, ImageIcon> imageType = new HashMap<>();
 
     public ImageIcon getImageIcon(String imageName) {
-        log.warn("In get Image method");
         ImageIcon icon = imageType.get(imageName);
         if (Objects.isNull(icon)) {
             icon = uploadFromResources(imageName);

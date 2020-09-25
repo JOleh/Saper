@@ -5,11 +5,39 @@
       <artifact name="Saper:jar" />
     </artifacts-to-build>
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="81d7bfed-1056-4715-a19d-548fe2bd2e59" name="Default" comment="fake commit">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saper.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +60,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -202,6 +229,17 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="works with maven and Spring Boot" />
     <MESSAGE value="refactored a bit OptionDialog" />
@@ -225,22 +263,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="445" y="122" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1600111506196" />
-    <state width="1493" height="34" key="GridCell.Tab.0.bottom" timestamp="1600176540594">
+    <state width="1493" height="360" key="GridCell.Tab.0.bottom" timestamp="1601059250754">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="34" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600176540594" />
-    <state width="1493" height="34" key="GridCell.Tab.0.center" timestamp="1600176540593">
+    <state width="1493" height="360" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601059250754" />
+    <state width="1493" height="360" key="GridCell.Tab.0.center" timestamp="1601059250754">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="34" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600176540593" />
-    <state width="1493" height="34" key="GridCell.Tab.0.left" timestamp="1600176540593">
+    <state width="1493" height="360" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1601059250754" />
+    <state width="1493" height="360" key="GridCell.Tab.0.left" timestamp="1601059250754">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="34" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600176540593" />
-    <state width="1493" height="34" key="GridCell.Tab.0.right" timestamp="1600176540593">
+    <state width="1493" height="360" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1601059250754" />
+    <state width="1493" height="360" key="GridCell.Tab.0.right" timestamp="1601059250754">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="34" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600176540593" />
+    <state width="1493" height="360" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1601059250754" />
     <state x="249" y="0" key="SettingsEditor" timestamp="1601058609928">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -257,10 +295,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="498" y="304" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1600110585564" />
-    <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601058383984">
+    <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601059270312">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1601058383984" />
+    <state x="578" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1601059270312" />
     <state x="478" y="145" width="579" height="534" key="find.popup" timestamp="1600108313671">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
